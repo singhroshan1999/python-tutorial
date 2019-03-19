@@ -70,3 +70,6 @@ fh.write('green')
 fh.seek(0)
 content = fh.read()
 print(content)
+
+
+# DO IT LATER
