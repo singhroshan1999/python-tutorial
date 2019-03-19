@@ -6,5 +6,8 @@
 # from . import submod2
 # from . import submod3
 
-import demo_package.submod1  # import tree submod1-->submod2-->submod3
+# import demo_package.submod1  # import tree submod1-->submod2-->submod3
+
+
+__all__ = ['submod1','submod2','submod3']  # this import subpackages
 print("demo_package is imported")
