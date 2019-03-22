@@ -144,10 +144,43 @@ def infinite_looper(objects):
             count = 0
         message = yield objects[count]
 x = infinite_looper("abcdef")
-print(next(x))
-print(x.send(4))
-print(next(x))
-print(next(x))
-print(x.send(5))
-print(next(x))
+# print(next(x))
+# print(x.send(4))
+# print(next(x))
+# print(next(x))
+# print(x.send(5))
+# print(next(x))
 
+
+# ## yield from
+
+def yld():
+    yield from "roshan" # ###
+
+# for x in yld():
+#     print(x)
+
+# ## recursive generator
+
+def permutations(items):
+    n = len(items)
+    if n==0: yield []
+    else:
+        for i in range(len(items)):
+            for cc in permutations(items[:i]+items[i+1:]):
+                yield [items[i]]+cc
+# for p in permutations(['r','e','d']): print(''.join(p))
+# for p in permutations(list("game")): print(''.join(p) + ", ", end="")
+
+# ## generator of generators
+
+def fibonacci():
+    """Ein Fibonacci-Zahlen-Generator"""
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+def firstn(g, n):
+    for i in range(n):
+        yield next(g)
+print(list(firstn(fibonacci(), 10)))
