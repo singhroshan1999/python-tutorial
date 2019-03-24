@@ -174,3 +174,62 @@ d = Dogs()
 d.about()
 c = Cats()
 c.about()
+
+
+# ## getter and setter
+
+#1 JAVA way of creating getter setter
+
+class JAVA:
+    def __init__(self,x):
+        self.__x = x
+        # self.set_x(x)  # alternatively
+    def get_x(self):
+        print(self.__x)
+    def set_x(self,x):
+        self.__x = x
+j1 = JAVA(12)
+j1.get_x()
+j1.set_x(23)
+j1.get_x()
+
+#2 pythonic way (without encapsulation)
+
+class PYTHON:
+    def __init__(self,x):
+        self.x = x
+p1 = PYTHON(12)
+print(p1.x)
+p1.x = 23
+print(p1.x)
+
+#3 more pythonic way (using @property @f.setter )
+
+class MOREP:
+    def __init__(self,x):
+        self.x = x
+    @property
+    def x(self):
+        print(self.__x)
+    @x.setter
+    def x(self,x):
+        self.__x = x
+m1 = MOREP(12)
+m1.x
+m1.x = 23
+m1.x
+
+#4 similar code without decorator with property(getter,setter)
+
+class MOREP2:
+    def __init__(self,x):
+        self.x = x
+    def __x_get(self):  # we can now make them private also
+        print(self.__x)
+    def __x_set(self,x):
+        self.__x = x
+    x = property(__x_get,__x_set)
+m12 = MOREP2(112)
+m12.x
+m12.x = 231
+m12.x
