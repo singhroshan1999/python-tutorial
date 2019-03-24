@@ -110,3 +110,67 @@ del d
 del d2
 del d3
 
+
+# ## more on class instance
+
+class C:
+    count = 0
+    def __init__(self):
+        C.count+=1
+        print("Instance created",C.count)
+    def __del__(self):
+        C.count -=1
+        print("Instance removed",C.count)
+c1 = C()
+c2 = C()
+c3 = c1
+del c1
+del c2
+del c3
+
+# ## @staticmethod to create static method
+
+class static:
+    def __init__(self):
+        print("Created static instance")
+    @staticmethod
+    def thisMethodIsStatic():
+        print("This is static method")
+    def thisIsNotStaticMethod():
+        print("Created non static method")
+static.thisMethodIsStatic()  # accessing from class
+x = static()  # accessing from instance of class
+x.thisMethodIsStatic()
+static.thisIsNotStaticMethod()  # only accessed using class
+# x.thisIsNotStaticMethod()  # error while accessing because self is passed by default
+
+# ## @classmethod to define class method
+
+class Robot:
+    __counter = 0
+    def __init__(self):
+        type(self).__counter += 1
+    @classmethod
+    def RobotInstances(cls):
+        return cls, Robot.__counter
+r = Robot()
+
+print(r.RobotInstances())
+
+# more practical example  using inheritance
+
+class Pets:
+    name = "pet animals"
+    @classmethod
+    def about(cls):
+        print("This class is about {}!".format(cls.name))
+class Dogs(Pets):
+    name = "'man's best friends' (Frederick II)"
+class Cats(Pets):
+    name = "cats"
+p = Pets()
+p.about()
+d = Dogs()
+d.about()
+c = Cats()
+c.about()
